@@ -23,7 +23,7 @@ class FiguresController < ApplicationController
       @figure.titles << Title.find_or_create_by(:name => params[:title][:name])
     end
     if !params[:landmark][:name].empty?
-      @figure.landmarks << Landmark.find_or_create_by(:name => params[:landmark][:name])
+      @figure.landmarks << Landmark.find_or_create_by(params[:landmark])
     end
     @figure.save
     redirect to ("/figures/#{@figure.id}")
@@ -38,9 +38,7 @@ class FiguresController < ApplicationController
 
   patch '/figures/:id' do
     @figure = Figure.find_by_id(params[:id])
-    if @figure.name != params[:figure][:name]
-      @figure.name = params[:figure][:name]
-    end
+    @figure.update(:name => params[:figure][:name])
     if !params[:figure][:title_ids].empty?
       @figure.replace_titles(params[:figure][:title_ids])
     end
@@ -52,7 +50,7 @@ class FiguresController < ApplicationController
       @figure.replace_landmarks(params[:figure][:landmark_ids])
     end
     if !params[:landmark][:name].empty?
-      @figure.landmarks << Landmark.find_or_create_by(:name => params[:landmark][:name])
+      @figure.landmarks << Landmark.find_or_create_by(params[:landmark])
     end
 
     @figure.save
