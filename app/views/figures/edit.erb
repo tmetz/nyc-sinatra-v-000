@@ -13,8 +13,8 @@
     <input type="checkbox" name="figure[title_ids][]" value="<%=title.id%>" id="title_<%=title.id%>"
     <%='checked' if @figure.titles.include?(Title.find_by_id(title.id)) %>>
     <%=title.name%></input>
-<%end%>
-<br>
+  <%end%>
+  <br>
   <label>and/or, create a new title:</label>
   <br>
   <label>Name:</label>
