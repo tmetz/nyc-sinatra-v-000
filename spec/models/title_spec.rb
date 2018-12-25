@@ -6,6 +6,12 @@ describe "Title" do
     @mayor = Title.create(:name => "Mayor")
   end
 
+  after do
+    Landmark.destroy_all
+    Figure.destroy_all
+    Title.destroy_all
+  end
+
 
   it "has a name" do 
     expect(@mayor.name).to eq("Mayor")
