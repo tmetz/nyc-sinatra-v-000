@@ -22,11 +22,11 @@ class LandmarksController < ApplicationController
 
   patch '/landmarks/:id' do
     @landmark = Landmark.find_by_id(params[:id])
-    if !params[:landmark][:name].empty?
+    if @landmark.name != params[:landmark][:name]
       @landmark.name = params[:landmark][:name]
     end
-    if !params[:landmark][:year_completed].empty?
-      @landmark.name = params[:landmark][:year_completed]
+    if @landmark.year_completed != params[:landmark][:year_completed]
+      @landmark.year_completed = params[:landmark][:year_completed]
     end
     @landmark.save
     redirect to ("/landmarks/#{@landmark.id}")
