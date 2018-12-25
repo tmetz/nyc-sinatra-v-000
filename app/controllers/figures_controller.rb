@@ -52,7 +52,7 @@ class FiguresController < ApplicationController
       @figure.replace_landmarks(params[:figure][:landmark_ids])
     end
     if !params[:landmark][:name].empty?
-      @figure.landmarks << Landmark.find_or_create_by(:name => params[:landmark][:name])
+      @figure.landmarks << Landmark.find_or_create_by(params[:landmark][:name])
     end
 
     @figure.save
